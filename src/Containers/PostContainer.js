@@ -3,6 +3,8 @@ import PostCard from '../Components/PostCard'
 
 class PostContainer extends React.Component {
 
+
+
     render () {
         return(
             <div>
@@ -11,9 +13,9 @@ class PostContainer extends React.Component {
                         <PostCard 
                             key={post.id} 
                             post={post} 
-                            editPost ={this.props.editPost}
+                            editThisPost ={this.props.editThisPost}
                             showPost ={this.props.showPost}
-                            deletePost = {this.props.deletePost}
+                            deleteThisPost = {this.props.deleteThisPost}
                         /> 
                     ))
                 }

@@ -38,16 +38,27 @@ export function getPosts () {
 }
 
 //EDIT USER'S POST 
-export function editPost (title, content, postId) {
-  return fetch(`${API_BASE_URL}/Posts/${postId}`, {
+export function editPost (title, content, user_id, post_id) {
+  return fetch(`${API_BASE_URL}/posts/${post_id}`, {
     method: "PATCH", 
     headers: {
       "Content-Type": "application/json",
       Accepts: "application/json"
     }, 
-    body: JSON.stringify({title, content})
+    body: JSON.stringify({title, content, user_id})
   })
   .then(resp => resp.json())
+}
+
+//DELETE USER'S POST
+export function deletePost(post_id){
+  return fetch(`${API_BASE_URL}/posts/${post_id}`, {
+    method: 'DELETE', 
+    headers: {
+      "Content-Type": "application/json", 
+      Accepts: "application/json"
+    }
+  })
 }
 
 export default {
@@ -55,4 +66,6 @@ export default {
   validate,
   createEntry,
   getPosts,
+  editPost
 }
+

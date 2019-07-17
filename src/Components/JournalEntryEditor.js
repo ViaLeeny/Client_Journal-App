@@ -1,6 +1,7 @@
 import React, { createElement } from "react";
 import { Button, Form, Message, Icon } from 'semantic-ui-react'
 import { editPost } from "../Services/api";
+import SearchBar from './SearchBar'
 
 
 class JournalEntryEditor extends React.Component {
@@ -45,6 +46,7 @@ class JournalEntryEditor extends React.Component {
     const { title, content } = this.state
     return (
       <div className="JournalEntryCreator">
+        <SearchBar /> `
         <Icon link name='arrow left' size='large' /> 
         <Form>
           <Form.Field>

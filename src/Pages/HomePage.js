@@ -11,7 +11,9 @@ class HomePage extends React.Component {
 
 state = {
     selectedPost: [],
-    user_id: 2
+    user_id: 2, 
+    location_id: 4, 
+    mood_id: 1
     }
 
 
@@ -33,7 +35,7 @@ state = {
     //CREATE AN ENTRY
     handleSubmit = () => {
         const emptyString = ''
-        createEntry(emptyString, emptyString, this.state.user_id)
+        createEntry(emptyString, emptyString, this.state.user_id, this.state.location_id, this.state.mood_id)
         .then( data => {
                     this.setState({
                         selectedPost: [data]

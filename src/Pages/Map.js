@@ -1,19 +1,35 @@
 import React from 'react'
-import { GoogleMap, withGoogleMap, withScriptjs, InfoWindow, Marker  } from 'react-google-maps'
-
-
-const MapWithAMarker = withGoogleMap(props => (
-    < GoogleMap 
-    defaultZoom={10} 
-    defaultCenter={{lat: 40.712776, lng: -74.005974}} 
-    >
-        <Marker position={{lat: 40.712776, lng: -74.005974 }}/>
-    </ GoogleMap>
-))
+import {getLocations} from '../Services/location_api'
+import MapWithAMarker from './MapWithAMarker'
 
 class Map extends React.Component {
 
+    state={
+        locations: []
+    }
 
+    //USE THE GETLOCATIONS FUNCTION IN SERVICES/LOCATION_API TO SET STATE
+    setLocations = () => {
+        
+        getLocations()
+        .then(data => {
+          this.setState({
+              locations: data
+          })
+          })
+    } 
+
+    //FETCH LOCATIONS WHEN COMPONENT MOUNTS
+    componentDidMount() {
+    this.setLocations()
+    }
+
+    //SHOW MARKER INFO BOX WHEN MARKER IS CLICKED ON
+    showInfoBox = () => {
+        console.log('hello')
+    }
+
+    //RENDER MAP WITH MARKERS
     render() {
         return(
             <div> 
@@ -21,6 +37,9 @@ class Map extends React.Component {
                 <MapWithAMarker
                     containerElement = {<div style={{ height: `50vh`, width: `50vh`, "margin": 'auto'}} />}
                     mapElement = {<div style={{height: `100%`}} /> }
+                    locations={this.state.locations}
+                    showInfoBox={this.showInfoBox}
+
                 />
             </div>
         )

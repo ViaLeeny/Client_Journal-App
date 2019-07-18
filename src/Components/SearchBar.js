@@ -1,5 +1,7 @@
 import React from 'react'
 import { Search, Grid, Header, Segment } from 'semantic-ui-react'
+import PlacesAutocomplete from 'react-places-autocomplete';
+
 
 
 const initialState = { isLoading: false, results: [], value: '' }

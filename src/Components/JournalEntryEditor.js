@@ -10,13 +10,15 @@ class JournalEntryEditor extends React.Component {
     title: '', 
     content: '', 
     post_id: '', 
-    user_id: 2
+    user_id: 2, 
+    location_id: 6, 
+    mood_id: 1
   }
 
   //EDIT THE NEWLY CREATED POST
   handleSaveSubmit  =() => {
     const { title, content, user_id, post_id} = this.state
-    editPost( title, content, user_id, post_id)
+    editPost( title, content, user_id, post_id, this.state.location_id, this.state.mood_id)
     .then( data => {
       console.log(data)
     })

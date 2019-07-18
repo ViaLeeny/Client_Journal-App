@@ -1,61 +1,58 @@
 import React from 'react'
-import { Search, Grid, Header, Segment } from 'semantic-ui-react'
-import PlacesAutocomplete from 'react-places-autocomplete';
+import { GoogleMap, withGoogleMap, withScriptjs, InfoWindow, Marker  } from 'react-google-maps'
+import Autocomplete from 'react-google-autocomplete';
+import {Input} from 'semantic-ui-react'
+/* global google */
 
-
-
-const initialState = { isLoading: false, results: [], value: '' }
 
 
 class SearchBar extends React.Component {
-    state = initialState
+  constructor(props) {
+    super(props);
+    this.autocompleteInput = React.createRef();
+    this.autocomplete = null;
+    this.handlePlaceChanged = this.handlePlaceChanged.bind(this);
+  }
 
-    handleResultSelect = (e, { result }) => this.setState({ value: result.title })
-  
-    handleSearchChange = (e, { value }) => {
-      this.setState({ isLoading: true, value })
-  
-      setTimeout(() => {
-        if (this.state.value.length < 1) return this.setState(initialState)
-  
-        // const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-        // const isMatch = result => re.test(result.title)
-  
-        // this.setState({
-        //   isLoading: false,
-        //   results: _.filter(source, isMatch),
-        // })
-      }, 300)
-    }
-  
-    render() {
-      const { isLoading, value, results } = this.state
-  
-      return (
-        <Grid>
-          <Grid.Column width={6}>
-            <Search
-              id='Search_term' 
-              placeholder='Your current city'
-              input={{ icon: 'search', iconPosition: 'left'} }
-              loading={isLoading}
-              onResultSelect={this.handleResultSelect}
-            //   onSearchChange={_.debounce(this.handleSearchChange, 500, {
-            //     leading: true,
-            //   })}
-              results={results}
-              value={value}
-              {...this.props}
-            />
-          </Grid.Column>
-        </Grid>
-      )
-    }
+  componentDidMount() {
+    this.autocomplete = new google.maps.places.Autocomplete(this.autocompleteInput.current,
+        {"types": ["geocode"]});
 
+    this.autocomplete.addListener('place_changed', this.handlePlaceChanged);
+  }
+
+  handlePlaceChanged(){
+    const place = this.autocomplete.getPlace();
+    console.log(place.geometry.location.lat())
+    console.log(place.geometry.location.lng())
+    console.log(place.formatted_address)
+  }
+
+
+
+  render() {
+    return (
+       <div>
+        <input ref={this.autocompleteInput}  id="autocomplete" placeholder="Enter your city"
+         type="text"></input>
+      </div>
+    );
+  }
 }
 
-
-
+// const SearchBar = withGoogleMap(props => (
+//   < GoogleMap>
+//     <Autocomplete 
+//       style={{
+//         width: '100%', 
+//         height: '40px', 
+//         paddingLeft: '16px', 
+//         marginTop: '2px', 
+//         marginBottom: '2px'
+//       }}
+//     />
+//   </ GoogleMap>
+// ))
 
 
 

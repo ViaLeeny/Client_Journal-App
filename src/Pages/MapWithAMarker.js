@@ -1,6 +1,7 @@
 import React from 'react'
 import { GoogleMap, withGoogleMap, withScriptjs, InfoWindow, Marker  } from 'react-google-maps'
 import Geocode from 'react-geocode'
+import Autocomplete from 'react-google-autocomplete';
 import {getLocations} from '../Services/location_api'
 
 
@@ -16,11 +17,19 @@ const MapWithAMarker = withGoogleMap(props => (
                     key={location.id} 
                     position={{lat: location.latitude, lng: location.longitude} }
                     name={location.name}
-                    onClick= {props.showInfoBox}
+                    onClick= {() => props.showInfoBox(location)}
                 />
             ))
         }
-        {/* <Marker  name={'New York, NY'}draggable={false} position={{lat: 40.712776, lng: -74.005974 }}/> */}
+
+        {props.selectedLocation && (
+            <InfoWindow
+                position={{lat: props.selectedLocation.latitude, lng: props.selectedLocation.longitude  } }
+                onCloseClick= {() => props.hideInfoBox()}
+            >
+                <h4>You have journaled in {props.selectedLocation.name}!</h4>
+            </InfoWindow>
+        )}
     </ GoogleMap>
 ))
 

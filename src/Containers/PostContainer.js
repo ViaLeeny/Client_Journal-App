@@ -15,6 +15,7 @@ class PostContainer extends React.Component {
                             post={post} 
                             editThisPost ={this.props.editThisPost}
                             showPost ={this.props.showPost}
+                            createPost={this.props.createPost}
                             deleteThisPost = {this.props.deleteThisPost}
                         /> 
                     ))

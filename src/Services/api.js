@@ -21,6 +21,7 @@ export function validate () {
 
 //CREATE JOURNAL ENTRY
 export function createEntry(title, content, user_id, location_id, mood_id){
+  console.log('hello')
   return fetch(`${API_BASE_URL}/posts`, {
     method: "POST",
     headers: {
@@ -39,6 +40,7 @@ export function getPosts () {
 
 //EDIT USER'S POST 
 export function editPost (title, content, user_id, post_id, location_id, mood_id) {
+  console.log('hello edit')
   return fetch(`${API_BASE_URL}/posts/${post_id}`, {
     method: "PATCH", 
     headers: {

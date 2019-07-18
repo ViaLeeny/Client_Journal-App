@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import PostContainer from '../Containers/PostContainer'
-import JournalEntryEditor from '../Components/JournalEntryEditor'
+import JournalEntryCreator from '../Components/JournalEntryCreator'
 import { createEntry } from "../Services/api";
 import { Icon } from 'semantic-ui-react'
 import NavBar from '../Components/NavBar'
@@ -11,8 +11,8 @@ class HomePage extends React.Component {
 
 state = {
     selectedPost: [],
-    user_id: 2, 
-    location_id: 4, 
+    user_id: 1, 
+    location_id: 1, 
     mood_id: 1
     }
 
@@ -48,11 +48,15 @@ state = {
         // )
     }
 
+    createPost = () => {
+        console.log('We are creating this.')
+    }
+
     //SHOW SELECTED POST IF THERE IS ONE OR SHOW ALL POSTS
     render () {
         const { selectedPost } = this.state
         const { posts } = this.props
-        const { showPost, handleSubmit } = this
+        const { showPost, handleSubmit, createPost } = this
 
         if (selectedPost.length > 0 ){
             return (
@@ -60,7 +64,7 @@ state = {
                 < NavBar /> 
                 <h1> Welcome to your journal {this.props.username} </h1>
                     <Link to='/' class="ui primary button" onClick={this.props.signOut} >Sign out </Link>
-                    <JournalEntryEditor post={selectedPost[0]}
+                    <JournalEntryCreator post={selectedPost[0]}
                     /> 
                 </div>
                 )
@@ -70,11 +74,12 @@ state = {
                 < NavBar /> 
                 <h1> Welcome to your journal {this.props.username} </h1>
                 <Link to='/' class="ui primary button" onClick={this.props.signOut} >Sign out </Link>
-                    <Icon link name="add" size='large' onClick={handleSubmit} />
+                    <Link to='/NewEntry' ><Icon link name="add" size='large' onClick={handleSubmit} /></Link>
                     <PostContainer 
                         posts = {posts} 
                         editThisPost ={this.props.editThisPost}
                         showPost ={showPost}
+                        createPost={createPost}
                         deleteThisPost = {this.props.deleteThisPost}
                          />
                 </div>

@@ -5,7 +5,8 @@ import MapWithAMarker from './MapWithAMarker'
 class Map extends React.Component {
 
     state={
-        locations: []
+        locations: [], 
+        selectedLocation: []
     }
 
     //USE THE GETLOCATIONS FUNCTION IN SERVICES/LOCATION_API TO SET STATE
@@ -25,8 +26,21 @@ class Map extends React.Component {
     }
 
     //SHOW MARKER INFO BOX WHEN MARKER IS CLICKED ON
-    showInfoBox = () => {
-        console.log('hello')
+    showInfoBox = (theLocation) => {
+        const {selectedLocation } = this.state
+        const addToSelectedLocationArray = [...selectedLocation]
+        addToSelectedLocationArray.shift()
+        console.log(theLocation)
+        addToSelectedLocationArray.unshift(theLocation)
+        this.setState({
+            selectedLocation: addToSelectedLocationArray
+        })
+    }
+
+    hideInfoBox = () => {
+        this.setState({
+            selectedLocation: []
+        })
     }
 
     //RENDER MAP WITH MARKERS
@@ -39,7 +53,8 @@ class Map extends React.Component {
                     mapElement = {<div style={{height: `100%`}} /> }
                     locations={this.state.locations}
                     showInfoBox={this.showInfoBox}
-
+                    hideInfoBox={this.hideInfoBox}
+                    selectedLocation={this.state.selectedLocation[0]}
                 />
             </div>
         )

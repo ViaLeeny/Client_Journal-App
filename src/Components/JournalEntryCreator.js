@@ -1,11 +1,13 @@
-import React, { createElement } from "react";
+import React from "react";
 import { Button, Form, Message, Icon } from 'semantic-ui-react'
-import { editPost } from "../Services/api";
+import { createEntry } from "../Services/api";
 import SearchBar from './SearchBar'
-import NavBar from '../Components/NavBar'
 import { Link } from 'react-router-dom'
+import NavBar from '../Components/NavBar'
 
-class JournalEntryEditor extends React.Component {
+
+
+class JournalEntryCreator extends React.Component {
 
   state = {
     title: '', 
@@ -18,11 +20,12 @@ class JournalEntryEditor extends React.Component {
 
   //EDIT THE NEWLY CREATED POST
   handleSaveSubmit  =() => {
-    const { title, content, user_id, post_id} = this.state
-    editPost( title, content, user_id, post_id, this.state.location_id, this.state.mood_id)
+    const { title, content, user_id, location_id, mood_id} = this.state
+    createEntry( title, content, user_id, location_id, mood_id)
     .then( data => {
       console.log(data)
     })
+
   }
 
   componentDidMount() {
@@ -63,6 +66,7 @@ class JournalEntryEditor extends React.Component {
             <Form.TextArea name="content" value={content} placeholder='Your Thoughts' onChange={handleChange} />
           </Form.Field>
           <Message success header='Form Completed' content="Your post has been saved!" />
+          {/* <Link to='/Entry' class="ui primary button" onClick={handleSaveSubmit} >Save </Link> */}
           <Button type='submit' onClick={handleSaveSubmit}>Save</Button>
           <Button type='cancel' >Cancel</Button>
 
@@ -72,4 +76,4 @@ class JournalEntryEditor extends React.Component {
   }
 }
 
-export default JournalEntryEditor;
+export default JournalEntryCreator;

@@ -6,6 +6,8 @@ import WelcomePage from './User_Accounts/WelcomePage'
 import HomePage from './Pages/HomePage'
 import UserProfile from './User_Accounts/UserProfile';
 import JournalEntryEditor from './Components/JournalEntryEditor'
+import JournalEntryCreator from './Components/JournalEntryCreator'
+
 import Map from './Pages/Map'
 import { validate, getPosts } from './Services/api'
 
@@ -83,7 +85,8 @@ class App extends React.Component {
        <Switch >
          <Route exact path='/' component={props => < WelcomePage {...props} /> }/>
          <Route path="/signin" component={props => <LoginComponent signIn={signIn} {...props} />}/>
-         <Route path="/NewEntry" component={props => <JournalEntryEditor {...props} />}/>
+         <Route path="/NewEntry" component={props => <JournalEntryCreator {...props} />}/>
+         <Route path="/Entry" component={props => <JournalEntryEditor {...props} username = {username}  />}/>
          <Route path="/map" component={props => <Map {...props} />}/>
 
 

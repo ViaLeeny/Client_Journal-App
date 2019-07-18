@@ -10,7 +10,7 @@ class PostCard extends React.Component {
   }
 
   handleEditClick = () => {
-
+    this.props.createPost()
   }
 
   render() {

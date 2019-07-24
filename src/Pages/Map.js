@@ -51,6 +51,9 @@ class Map extends React.Component {
                 < NavBar /> 
                 <h1>Journal Map</h1>
                 <MapWithAMarker
+                    // googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}`}
+                    // googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}&libraries=places`}
+                    // loadingElement={<div style={{height: "100%"}}/>}
                     containerElement = {<div style={{ height: `65vh`, width: `65vh`, "margin": 'auto'}} />}
                     mapElement = {<div style={{height: `100%`}} /> }
                     locations={this.state.locations}

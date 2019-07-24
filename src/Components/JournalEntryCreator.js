@@ -12,20 +12,26 @@ class JournalEntryCreator extends React.Component {
   state = {
     title: '', 
     content: '', 
+    location_name: '',
+    longitude: 1, 
+    latitude: 0,
     post_id: '', 
     user_id: 1, 
     location_id: 1, 
     mood_id: 1
   }
 
-  //EDIT THE NEWLY CREATED POST
+  //CREATE POST
   handleSaveSubmit  =() => {
-    const { title, content, user_id, location_id, mood_id} = this.state
-    createEntry( title, content, user_id, location_id, mood_id)
+    const { title, content, location_name, mood_id, longitude, latitude} = this.state
+
+    createEntry( title, content, location_name, mood_id, longitude, latitude)
     .then( data => {
       console.log(data)
     })
-
+      // .then(
+      //     this.props.history.push('./home')
+      // )
   }
 
   componentDidMount() {
@@ -46,9 +52,18 @@ class JournalEntryCreator extends React.Component {
     })
   }
 
+  //CHANGE STATE TO SELECTED LOCATION FROM GOOGLE PLACES API
+  handleSelect = (location, lat, lng) => {
+    this.setState({
+    location_name: location, 
+    latitude: lat,
+    longitude: lng
+    })
+  }
+
   //JOURNAL ENTRY INPUT FORM
   render() {
-    const { handleChange, handleSaveSubmit} = this
+    const { handleChange, handleSaveSubmit, handleSelect} = this
     const { title, content } = this.state
     return (
       <div className="JournalEntryCreator">
@@ -56,7 +71,7 @@ class JournalEntryCreator extends React.Component {
         <h1> Welcome to your journal {this.props.username} </h1>
         <Link to='/' class="ui primary button" onClick={this.props.signOut} >Sign out </Link>
 
-        <SearchBar /> 
+        <SearchBar  handleSelect={handleSelect} handleChange={handleChange} /> 
         <Icon link name='arrow left' size='large' /> 
         <Form>
           <Form.Field>
@@ -66,9 +81,8 @@ class JournalEntryCreator extends React.Component {
             <Form.TextArea name="content" value={content} placeholder='Your Thoughts' onChange={handleChange} />
           </Form.Field>
           <Message success header='Form Completed' content="Your post has been saved!" />
-          {/* <Link to='/Entry' class="ui primary button" onClick={handleSaveSubmit} >Save </Link> */}
           <Button type='submit' onClick={handleSaveSubmit}>Save</Button>
-          <Button type='cancel' >Cancel</Button>
+          <Link to='/home' type='cancel' class="ui secondary button" >Cancel</Link>
 
         </Form>
       </div>

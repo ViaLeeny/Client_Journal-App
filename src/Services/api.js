@@ -6,7 +6,8 @@ export function login(username, password){
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Accepts: "application/json"
+      Accepts: "application/json", 
+      'Authorization': localStorage.getItem("token")
     },
     body: JSON.stringify({ username, password })
   }).then(resp => resp.json());
@@ -15,39 +16,54 @@ export function login(username, password){
 //VALIDATE SO USERS CAN REMAIN SIGNEDIN
 export function validate () {
   return fetch(`${API_BASE_URL}/validate`, {
-    headers: {'Authorization': localStorage.token}
+    headers: {'Authorization': localStorage.getItem("token")}
   }).then(resp => resp.json())
 }
 
+//SIGN UP
+export function signup(first_name, last_name, email, username, password) {
+  return fetch(`${API_BASE_URL}/signup`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json"
+  },
+    body: JSON.stringify({first_name, last_name, email, username, password })
+  }).then(resp => resp.json(console.log));
+}
+
 //CREATE JOURNAL ENTRY
-export function createEntry(title, content, user_id, location_id, mood_id){
-  console.log('hello')
+export function createEntry(title, content, location_name, mood_id, longitude, latitude){
   return fetch(`${API_BASE_URL}/posts`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Accepts: "application/json"
+      Accepts: "application/json", 
+      'Authorization': localStorage.getItem("token")
     },
-    body: JSON.stringify({ title, content, user_id, location_id, mood_id })
-  }).then(resp => resp.json());
+    body: JSON.stringify({ title, content, location_name, mood_id, longitude, latitude })
+  }).then(resp => resp.json(console.log))
 }
 
 //GET CURRENT USER'S POSTS
 export function getPosts () {
-  return fetch(`${API_BASE_URL}/posts`)
+  return fetch(`${API_BASE_URL}/posts`, {
+    headers: {
+      'Authorization': localStorage.getItem("token")
+    }
+  })
   .then(resp => resp.json())
 }
 
 //EDIT USER'S POST 
-export function editPost (title, content, user_id, post_id, location_id, mood_id) {
+export function editPost (post_id, title, content, user_id, location_name, mood_id, longitude, latitude  ) {
   console.log('hello edit')
   return fetch(`${API_BASE_URL}/posts/${post_id}`, {
     method: "PATCH", 
     headers: {
       "Content-Type": "application/json",
-      Accepts: "application/json"
+      Accepts: "application/json", 
+      'Authorization': localStorage.getItem("token")
     }, 
-    body: JSON.stringify({title, content, user_id, location_id, mood_id})
+    body: JSON.stringify({title, content, user_id, location_name, mood_id, longitude, latitude})
   })
   .then(resp => resp.json())
 }

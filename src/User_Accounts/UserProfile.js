@@ -1,5 +1,4 @@
 import React from 'react'
-import PostContainer from '../Containers/PostContainer'
 import { Icon } from 'semantic-ui-react'
 
 
@@ -9,7 +8,6 @@ class UserProfile extends React.Component {
 
 
     render () {
-        const { posts } = this.props
         return (
             <div> 
                 <h1>Welcome, {this.props.username}</h1>

@@ -1,12 +1,11 @@
 import React from 'react'
-import { GoogleMap, withGoogleMap, withScriptjs, InfoWindow, Marker  } from 'react-google-maps'
-import Geocode from 'react-geocode'
-import Autocomplete from 'react-google-autocomplete';
-import {getLocations} from '../Services/location_api'
-
+import { GoogleMap, withGoogleMap,InfoWindow, Marker  } from 'react-google-maps'
 
 
 const MapWithAMarker = withGoogleMap(props => (
+   <div> 
+
+
     < GoogleMap 
     defaultZoom={2} 
     defaultCenter={{lat: 40.712776, lng: -73.005974}} 
@@ -31,6 +30,7 @@ const MapWithAMarker = withGoogleMap(props => (
             </InfoWindow>
         )}
     </ GoogleMap>
+    </div>
 ))
 
 

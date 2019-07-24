@@ -1,6 +1,7 @@
 import React from 'react'
 import {getLocations} from '../Services/location_api'
 import MapWithAMarker from './MapWithAMarker'
+import NavBar from '../Components/NavBar'
 
 class Map extends React.Component {
 
@@ -47,9 +48,10 @@ class Map extends React.Component {
     render() {
         return(
             <div> 
+                < NavBar /> 
                 <h1>Journal Map</h1>
                 <MapWithAMarker
-                    containerElement = {<div style={{ height: `50vh`, width: `50vh`, "margin": 'auto'}} />}
+                    containerElement = {<div style={{ height: `65vh`, width: `65vh`, "margin": 'auto'}} />}
                     mapElement = {<div style={{height: `100%`}} /> }
                     locations={this.state.locations}
                     showInfoBox={this.showInfoBox}
@@ -63,5 +65,5 @@ class Map extends React.Component {
 
 export default Map
 
-{/* <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAztKCL4q8ZGemAzAEfBV_gxrGMMooFSQ0&callback=initMap"
-    async defer></script> */}
+// {/* <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAztKCL4q8ZGemAzAEfBV_gxrGMMooFSQ0&callback=initMap"
+//     async defer></script> */}

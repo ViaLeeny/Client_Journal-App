@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { Route, Switch, withRouter } from "react-router-dom";
 import LoginComponent from "./User_Accounts/LoginComponent";
+import SignUpComponent from "./User_Accounts/SignUpComponent";
 import WelcomePage from './User_Accounts/WelcomePage'
 import HomePage from './Pages/HomePage'
 import UserProfile from './User_Accounts/UserProfile';
@@ -14,10 +15,20 @@ import { validate, getPosts } from './Services/api'
 class App extends React.Component {
   //SET STATE WITH THE CURRENT USER'S USERNAME
   state = {
-    username: '',
     posts: [], 
-    selectedPost: []
+    selectedPost: [], 
+    username: ''
   }
+
+  //SIGN UP FUNCTION
+  signUp = user => {
+    console.log(user)
+    this.setState({
+      username: user.username, 
+
+    })
+    localStorage.setItem('token', user.token)
+  };
 
   //SIGN USER IN
   signIn = user => {
@@ -47,8 +58,10 @@ class App extends React.Component {
   }
 
   //FUNCTION TO EDIT THE POST
-  editThisPost = (selectedPost) => {
-    console.log(selectedPost)
+  editThisPost = (thisPost) => {
+    this.setState({
+      selectedPost: thisPost
+    })
   }
 
   //FUNCTION TO DELETE THE POST
@@ -77,7 +90,7 @@ class App extends React.Component {
   }
 
   render () {
-    const { signIn, signOut, showPost, editThisPost, deleteThisPost } = this
+    const { signUp, signIn, signOut, editThisPost, deleteThisPost } = this
     const { username, posts, selectedPost } = this.state
 
     return (
@@ -85,8 +98,9 @@ class App extends React.Component {
        <Switch >
          <Route exact path='/' component={props => < WelcomePage {...props} /> }/>
          <Route path="/signin" component={props => <LoginComponent signIn={signIn} {...props} />}/>
+         <Route path="/signup" component={props => <SignUpComponent signUp={signUp} signIn={signIn} {...props} />}/>
          <Route path="/NewEntry" component={props => <JournalEntryCreator {...props} />}/>
-         <Route path="/Entry" component={props => <JournalEntryEditor {...props} username = {username}  />}/>
+         <Route path="/Entry" component={props => <JournalEntryEditor {...props} username = {username} selectedPost={selectedPost} />}/>
          <Route path="/map" component={props => <Map {...props} />}/>
 
 

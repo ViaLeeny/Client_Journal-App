@@ -1,24 +1,28 @@
 import React from 'react'
 import { Form } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import { login} from '../Services/api'
+import { signup} from '../Services/api'
 
-class LoginComponent extends React.Component {
+class SignUpComponent extends React.Component {
 
     //STATE FOR USER LOGIN DETAILS TYPED IN FORM
     state = {
         username: "", 
-        password: ""
+        password: "", 
+        email: "",
+        first_name: '', 
+        last_name: ''
     }
 
     //CHANGE STATE OF USERNAME INPUT WHILE USER TYPES
     handleSubmit = () => {
-        login(this.state.username, this.state.password)
+        const {first_name, last_name, email, username, password } = this.state
+        signup(first_name, last_name, email, username, password)
         .then(data => {
             if (data.errors){
                 alert(data.errors)
             } else {
-                this.props.signIn(data)
+                this.props.signUp(data)
             }
         })
     }
@@ -39,18 +43,33 @@ class LoginComponent extends React.Component {
                 <img src='https://www.southernladymagazine.com/wp-content/uploads/2015/08/Journal-Illustration-Cutout_CROP1.jpg' className="App-logo" alt="logo" />
                 <h1>Journal App</h1>
                 <Form>
+                    <label>First Name</label>
+                    <Form.Field>
+                    <input name="first_name" placeholder='First Name' onChange={handleChange} />
+                    </Form.Field>
+
+                    <label>Last Name</label>
+                    <Form.Field>
+                    <input name="last_name" placeholder='Last Name' onChange={handleChange} />
+                    </Form.Field>
+
+                    <label>Email</label>
+                    <Form.Field>
+                    <input name="email" placeholder='Email' onChange={handleChange} />
+                    </Form.Field>
+
                     <label>Username</label>
                     <Form.Field>
                     <input name="username" placeholder='Username' onChange={handleChange} />
                     </Form.Field>
+
                     <label>Password</label>
                     <Form.Field>
                     <input type="password" name="password"  placeholder='Password' onChange={handleChange} />
                     </Form.Field>
+
                     <br />
-                    <Link to='/home' className="ui primary button" onClick= {handleSubmit} >Submit</Link>
-                    <br/>
-                    <Link to='/signup' >Or, sign up!</Link>
+                    <Link to='/home' class="ui primary button" onClick= {handleSubmit} >Sign Up</Link>
                 </Form>
             </header>
         </div>
@@ -59,4 +78,4 @@ class LoginComponent extends React.Component {
 
 }
 
-export default LoginComponent
+export default SignUpComponent

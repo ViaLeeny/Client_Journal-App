@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import PostContainer from '../Containers/PostContainer'
-import JournalEntryCreator from '../Components/JournalEntryCreator'
 import { createEntry } from "../Services/api";
 import { Icon } from 'semantic-ui-react'
 import NavBar from '../Components/NavBar'
+import { validate, getPosts } from '../Services/api'
+
 
 
 class HomePage extends React.Component {
@@ -17,19 +18,34 @@ state = {
     }
 
 
+     //USE THE GETPOST FUNCTION IN SERVICES/API TO SET STATE
+  setPosts = () => {
+    getPosts()
+    .then(data => {
+      this.setState({
+          posts: data.reverse()
+      })
+      })
+  }
+
+    //INITIATE APP BY SETTING LOCAL STORAGE TOKEN
+    componentDidMount() {
+      if (localStorage.token){
+        validate().then(data => {
+          if (data.error){
+            alert(data.error)
+          } else {
+            this.setPosts()
+          }
+        })
+      }
+    }
+
     //FUNCTION TO SHOW THE ENTIRE POST A USER CLICKS ON
     showPost = (thePost) => {
-
-    const {selectedPost } = this.state
-    const addToSelectedPostArray = [...selectedPost]
-    addToSelectedPostArray.shift()
-
-    console.log(thePost)
-
-    addToSelectedPostArray.unshift(thePost)
-    this.setState({
-        selectedPost: addToSelectedPostArray
-    })
+    
+        this.props.editThisPost(thePost)
+        this.props.history.push('./Entry')
     }
 
     //CREATE AN ENTRY
@@ -54,27 +70,14 @@ state = {
 
     //SHOW SELECTED POST IF THERE IS ONE OR SHOW ALL POSTS
     render () {
-        const { selectedPost } = this.state
         const { posts } = this.props
-        const { showPost, handleSubmit, createPost } = this
-
-        if (selectedPost.length > 0 ){
+        const { showPost, createPost } = this
             return (
                 <div>
                 < NavBar /> 
                 <h1> Welcome to your journal {this.props.username} </h1>
-                    <Link to='/' class="ui primary button" onClick={this.props.signOut} >Sign out </Link>
-                    <JournalEntryCreator post={selectedPost[0]}
-                    /> 
-                </div>
-                )
-        } else {
-            return (
-                <div>
-                < NavBar /> 
-                <h1> Welcome to your journal {this.props.username} </h1>
-                <Link to='/' class="ui primary button" onClick={this.props.signOut} >Sign out </Link>
-                    <Link to='/NewEntry' ><Icon link name="add" size='large' onClick={handleSubmit} /></Link>
+                <Link to='/' className="ui primary button" onClick={this.props.signOut} >Sign out </Link>
+                    <Link to='/NewEntry' ><Icon link name="add" size='large'/></Link>
                     <PostContainer 
                         posts = {posts} 
                         editThisPost ={this.props.editThisPost}
@@ -85,7 +88,7 @@ state = {
                 </div>
                 )
             }
-    }
+    // }
 }
 
 

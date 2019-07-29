@@ -1,7 +1,8 @@
 import React from 'react'
-import {getLocations} from '../Services/location_api'
 import MapWithAMarker from './MapWithAMarker'
 import NavBar from '../Components/NavBar'
+import { getPosts } from '../Services/api'
+import {getLocations} from '../Services/location_api'
 
 class Map extends React.Component {
 
@@ -12,13 +13,17 @@ class Map extends React.Component {
 
     //USE THE GETLOCATIONS FUNCTION IN SERVICES/LOCATION_API TO SET STATE
     setLocations = () => {
-        
+        // const {locations} = this.state 
+        // const getLocations = [...locations]
+
         getLocations()
-        .then(data => {
+        .then(data => 
+        //     data.map(post => getLocations.push(post.location))) 
+        // .then(
           this.setState({
               locations: data
           })
-          })
+          )
     } 
 
     //FETCH LOCATIONS WHEN COMPONENT MOUNTS
@@ -52,8 +57,8 @@ class Map extends React.Component {
                 <h1>Journal Map</h1>
                 <MapWithAMarker
                     // googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}`}
-                    // googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}&libraries=places`}
-                    // loadingElement={<div style={{height: "100%"}}/>}
+                    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}&libraries=places`}
+                    loadingElement={<div style={{height: "100%"}}/>}
                     containerElement = {<div style={{ height: `65vh`, width: `65vh`, "margin": 'auto'}} />}
                     mapElement = {<div style={{height: `100%`}} /> }
                     locations={this.state.locations}

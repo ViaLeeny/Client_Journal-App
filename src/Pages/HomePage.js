@@ -5,6 +5,8 @@ import { createEntry } from "../Services/api";
 import { Icon } from 'semantic-ui-react'
 import NavBar from '../Components/NavBar'
 import { validate, getPosts } from '../Services/api'
+import WelcomePage from '../User_Accounts/LoginComponent'
+import LoginComponent from '../User_Accounts/LoginComponent';
 
 
 
@@ -17,15 +19,17 @@ state = {
     mood_id: 1
     }
 
-
-     //USE THE GETPOST FUNCTION IN SERVICES/API TO SET STATE
+  //USE THE GETPOST FUNCTION IN SERVICES/API TO SET STATE
   setPosts = () => {
     getPosts()
-    .then(data => {
+    .then(data => 
+      {
       this.setState({
           posts: data.reverse()
       })
-      })
+      }
+      )
+
   }
 
     //INITIATE APP BY SETTING LOCAL STORAGE TOKEN
@@ -70,8 +74,11 @@ state = {
 
     //SHOW SELECTED POST IF THERE IS ONE OR SHOW ALL POSTS
     render () {
-        const { posts } = this.props
-        const { showPost, createPost } = this
+      const { posts } = this.props
+      const { showPost, createPost } = this
+       
+      if (this.props.username){
+
             return (
                 <div>
                 < NavBar /> 
@@ -87,7 +94,18 @@ state = {
                          />
                 </div>
                 )
+            } else {
+              return (
+                <div> 
+                  <h1> Invalid Username / Password combination </h1>
+                 <LoginComponent /> 
+                </div>
+              
+              )
             }
+          
+          
+          }
     // }
 }
 

@@ -31,7 +31,7 @@ export function signup(first_name, last_name, email, username, password) {
 }
 
 //CREATE JOURNAL ENTRY
-export function createEntry(title, content, location_name, mood_id, longitude, latitude){
+export function createEntry(title, content, location_name, longitude, latitude){
   return fetch(`${API_BASE_URL}/posts`, {
     method: "POST",
     headers: {
@@ -39,13 +39,13 @@ export function createEntry(title, content, location_name, mood_id, longitude, l
       Accepts: "application/json", 
       'Authorization': localStorage.getItem("token")
     },
-    body: JSON.stringify({ title, content, location_name, mood_id, longitude, latitude })
+    body: JSON.stringify({ title, content, location_name, longitude, latitude })
   }).then(resp => resp.json(console.log))
 }
 
 //GET CURRENT USER'S POSTS
 export function getPosts () {
-  return fetch(`${API_BASE_URL}/posts`, {
+  return fetch(`${API_BASE_URL}/user_posts`, {
     headers: {
       'Authorization': localStorage.getItem("token")
     }
@@ -53,8 +53,10 @@ export function getPosts () {
   .then(resp => resp.json())
 }
 
+//GET CURRENT USER
+
 //EDIT USER'S POST 
-export function editPost (post_id, title, content, user_id, location_name, mood_id, longitude, latitude  ) {
+export function editPost (post_id, title, content, user_id, location_name, longitude, latitude  ) {
   console.log('hello edit')
   return fetch(`${API_BASE_URL}/posts/${post_id}`, {
     method: "PATCH", 
@@ -63,7 +65,7 @@ export function editPost (post_id, title, content, user_id, location_name, mood_
       Accepts: "application/json", 
       'Authorization': localStorage.getItem("token")
     }, 
-    body: JSON.stringify({title, content, user_id, location_name, mood_id, longitude, latitude})
+    body: JSON.stringify({title, content, user_id, location_name, longitude, latitude})
   })
   .then(resp => resp.json())
 }

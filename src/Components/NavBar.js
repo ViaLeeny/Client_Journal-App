@@ -40,6 +40,7 @@ export default function ElevateAppBar(props) {
           <Toolbar>
           <Link to='/home' className='Logo-name' ><Typography variant="h6">Journal App</Typography></Link>
           <Link to='/map' className="ui primary button" >Dash </Link> 
+          <Link to='/' class="ui primary button" onClick={props.signOut} >Sign out </Link>
           </Toolbar>
         </AppBar>
       </ElevationScroll>

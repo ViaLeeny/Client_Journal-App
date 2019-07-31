@@ -14,8 +14,10 @@ import { validate, getPosts } from './Services/api'
 
 class App extends React.Component {
   //SET STATE WITH THE CURRENT USER'S USERNAME
+  //constructor --> 
   state = {
     posts: [], 
+    locations: [],
     selectedPost: [], 
     username: ''
   }
@@ -57,6 +59,30 @@ class App extends React.Component {
       })
   }
 
+  //USE THE GETLOCATIONS FUNCTION IN SERVICES/API TO SET STATE
+  setLocations = () => {
+    // const {locations} = this.state 
+    // const getLocations = [...locations]
+
+    getPosts()
+    .then(data => 
+      this.setState({
+              locations: data
+          })
+      )
+    // .then(data => 
+    //     // data.map(post => 
+
+    //       // getLocations.push(data)
+    //     //   // )
+    //     //   ) 
+    //     // debugger
+    //   this.setState({
+    //       locations: data
+    //   }))
+    
+     
+}  
   //FUNCTION TO EDIT THE POST
   editThisPost = (thisPost) => {
     this.setState({
@@ -84,6 +110,7 @@ class App extends React.Component {
         } else {
           this.signIn(data)
           this.setPosts()
+          this.setLocations()
         }
       })
     }
@@ -91,7 +118,7 @@ class App extends React.Component {
 
   render () {
     const { signUp, signIn, signOut, editThisPost, deleteThisPost } = this
-    const { username, posts, selectedPost } = this.state
+    const { username, posts, selectedPost, locations } = this.state
 
     return (
     <div className='App'>
@@ -99,9 +126,9 @@ class App extends React.Component {
          <Route exact path='/' component={props => < WelcomePage {...props} /> }/>
          <Route path="/signin" component={props => <LoginComponent signIn={signIn} {...props} />}/>
          <Route path="/signup" component={props => <SignUpComponent signUp={signUp} signIn={signIn} {...props} />}/>
-         <Route path="/NewEntry" component={props => <JournalEntryCreator {...props} />}/>
-         <Route path="/Entry" component={props => <JournalEntryEditor {...props} username = {username} selectedPost={selectedPost} />}/>
-         <Route path="/map" component={props => <Map {...props} />}/>
+         <Route path="/NewEntry" component={props => <JournalEntryCreator signOut={signOut} {...props} />}/>
+         <Route path="/Entry" component={props => <JournalEntryEditor signOut={signOut} {...props} username = {username} selectedPost={selectedPost} />}/>
+         <Route path="/map" component={props => <Map signOut={signOut}  {...props} locations={locations} />}/>
 
 
          <Route path="/home" component={props => <HomePage 

@@ -5,18 +5,20 @@ import { google, GoogleMap, withGoogleMap,InfoWindow, Marker  } from 'react-goog
 const MapWithAMarker = withGoogleMap(props => (
    <div> 
 
-
+    
     < GoogleMap 
     defaultZoom={2} 
     defaultCenter={{lat: 40.712776, lng: -73.005974}} 
     >
         {
             props.locations.map((location) => (
+                
                 <Marker 
-                    key={location.id} 
-                    position={{lat: location.latitude, lng: location.longitude} }
-                    name={location.name}
-                    onClick= {() => props.showInfoBox(location)}
+                    key={location.location.id} 
+                    position={{lat: location.location.latitude, lng: location.location.longitude} }
+                    
+                    name={location.location.name}
+                    onClick= {() => props.showInfoBox(location.location)}
                 />
             ))
         }

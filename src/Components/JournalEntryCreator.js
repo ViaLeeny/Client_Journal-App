@@ -13,7 +13,7 @@ class JournalEntryCreator extends React.Component {
     title: '', 
     content: '', 
     location_name: '',
-    longitude: 1, 
+    longitude: 0, 
     latitude: 0,
     post_id: '', 
     user_id: 1, 
@@ -23,13 +23,15 @@ class JournalEntryCreator extends React.Component {
 
   //CREATE POST
   handleSaveSubmit  =() => {
-    const { title, content, location_name, mood_id, longitude, latitude} = this.state
 
-    createEntry( title, content, location_name, mood_id, longitude, latitude)
+    const { title, content, location_name, longitude, latitude} = this.state
+
+    createEntry( title, content, location_name, longitude, latitude)
     .then( data => {
       console.log(data)
     })
       // .then(
+      //  set state in app
       //     this.props.history.push('./home')
       // )
   }
@@ -67,16 +69,14 @@ class JournalEntryCreator extends React.Component {
     const { title, content } = this.state
     return (
       <div className="JournalEntryCreator">
-        < NavBar /> 
-        <h1> Welcome to your journal {this.props.username} </h1>
-        <Link to='/' class="ui primary button" onClick={this.props.signOut} >Sign out </Link>
-
-        <SearchBar  handleSelect={handleSelect} handleChange={handleChange} /> 
+        < NavBar signOut = {this.props.signOut} /> 
+         
         <Icon link name='arrow left' size='large' /> 
         <Form>
           <Form.Field>
             <input name="title" value={title} placeholder='Title' onChange={handleChange}/>
           </Form.Field>
+          <SearchBar  handleSelect={handleSelect} handleChange={handleChange} />
           <Form.Field>
             <Form.TextArea name="content" value={content} placeholder='Your Thoughts' onChange={handleChange} />
           </Form.Field>

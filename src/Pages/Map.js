@@ -7,29 +7,28 @@ import {getLocations} from '../Services/location_api'
 class Map extends React.Component {
 
     state={
-        locations: [], 
         selectedLocation: []
     }
 
     //USE THE GETLOCATIONS FUNCTION IN SERVICES/LOCATION_API TO SET STATE
-    setLocations = () => {
-        // const {locations} = this.state 
-        // const getLocations = [...locations]
+    // setLocations = () => {
+    //     const {locations} = this.state 
+    //     const getLocations = [...locations]
 
-        getLocations()
-        .then(data => 
-        //     data.map(post => getLocations.push(post.location))) 
-        // .then(
-          this.setState({
-              locations: data
-          })
-          )
-    } 
+    //     getPosts()
+    //     .then(data => 
+    //         data.map(post => getLocations.push(post.location))) 
+    //     .then(
+    //       this.setState({
+    //           locations: getLocations
+    //       })
+    //       )
+    // } 
 
     //FETCH LOCATIONS WHEN COMPONENT MOUNTS
-    componentDidMount() {
-    this.setLocations()
-    }
+    // componentDidMount() {
+    // this.setLocations()
+    // }
 
     //SHOW MARKER INFO BOX WHEN MARKER IS CLICKED ON
     showInfoBox = (theLocation) => {
@@ -53,7 +52,7 @@ class Map extends React.Component {
     render() {
         return(
             <div> 
-                < NavBar /> 
+                < NavBar signOut = {this.props.signOut}/> 
                 <h1>Journal Map</h1>
                 <MapWithAMarker
                     // googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}`}
@@ -61,7 +60,7 @@ class Map extends React.Component {
                     loadingElement={<div style={{height: "100%"}}/>}
                     containerElement = {<div style={{ height: `65vh`, width: `65vh`, "margin": 'auto'}} />}
                     mapElement = {<div style={{height: `100%`}} /> }
-                    locations={this.state.locations}
+                    locations={this.props.locations}
                     showInfoBox={this.showInfoBox}
                     hideInfoBox={this.hideInfoBox}
                     selectedLocation={this.state.selectedLocation[0]}

@@ -4,6 +4,7 @@ import { editPost } from "../Services/api";
 import SearchBar from './SearchBar'
 import NavBar from '../Components/NavBar'
 import { Link } from 'react-router-dom'
+import Tone from './Tone'
 
 class JournalEntryEditor extends React.Component {
 
@@ -16,7 +17,7 @@ class JournalEntryEditor extends React.Component {
     location_name: '',
     longitude: '', 
     latitude: '', 
-    mood_id: 1
+    post: ''
   }
 
   //EDIT THE NEWLY CREATED POST
@@ -35,7 +36,8 @@ class JournalEntryEditor extends React.Component {
       title: postToEdit.title, 
       content: postToEdit.content, 
       post_id: postToEdit.id,
-      location_id: postToEdit.location_id
+      location_id: postToEdit.location_id, 
+      post: postToEdit
     })}
   }
 
@@ -59,19 +61,18 @@ class JournalEntryEditor extends React.Component {
   //JOURNAL ENTRY INPUT FORM
   render() {
     const { handleChange, handleSaveSubmit, handleSelect} = this
-    const { title, content, location_name } = this.state
+    const { title, content, location_name, post } = this.state
     return (
       <div className="JournalEntryCreator">
-        < NavBar /> 
-        <h1> Welcome to your journal {this.props.username} </h1>
-        <Link to='/' className="ui primary button" onClick={this.props.signOut} >Sign out </Link>
-
-        <SearchBar name='location_name' value={location_name} handleSelect={handleSelect} handleChange={handleChange} location_name={location_name}/> 
+        < NavBar signOut = {this.props.signOut}/> 
+        
         <Icon link name='arrow left' size='large' /> 
+        {/* <Tone post={post}/> */}
         <Form>
           <Form.Field>
             <input name="title" value={title} placeholder='Title' onChange={handleChange}/>
           </Form.Field>
+          <SearchBar name='location_name' value={location_name} handleSelect={handleSelect} handleChange={handleChange} location_name={location_name}/> 
           <Form.Field>
             <Form.TextArea name="content" value={content} placeholder='Your Thoughts' onChange={handleChange} />
           </Form.Field>

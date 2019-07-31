@@ -40,7 +40,7 @@ export function createEntry(title, content, location_name, longitude, latitude){
       'Authorization': localStorage.getItem("token")
     },
     body: JSON.stringify({ title, content, location_name, longitude, latitude })
-  }).then(resp => resp.json(console.log))
+  }).then(resp => resp.json())
 }
 
 //GET CURRENT USER'S POSTS

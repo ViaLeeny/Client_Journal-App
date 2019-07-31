@@ -14,9 +14,6 @@ class HomePage extends React.Component {
 
 state = {
     selectedPost: [],
-    user_id: 1, 
-    location_id: 1, 
-    mood_id: 1
     }
 
   //USE THE GETPOST FUNCTION IN SERVICES/API TO SET STATE
@@ -53,24 +50,24 @@ state = {
     }
 
     //CREATE AN ENTRY
-    handleSubmit = () => {
-        const emptyString = ''
-        createEntry(emptyString, emptyString, this.state.user_id, this.state.location_id, this.state.mood_id)
-        .then( data => {
-                    this.setState({
-                        selectedPost: [data]
-                    })
-                    console.log(this.state.selectedPost)
-                } 
-            )
-        // .then(
-        //     this.props.history.push('./home')
-        // )
-    }
+    // handleSubmit = () => {
+    //     const emptyString = ''
+    //     createEntry(emptyString, emptyString, this.state.user_id, this.state.location_id, this.state.mood_id)
+    //     .then( data => {
+    //                 this.setState({
+    //                     selectedPost: [data]
+    //                 })
+    //                 console.log(this.state.selectedPost)
+    //             } 
+    //         )
+    //     // .then(
+    //     //     this.props.history.push('./home')
+    //     // )
+    // }
 
-    createPost = () => {
-        console.log('We are creating this.')
-    }
+    // createPost = () => {
+    //     console.log('We are creating this.')
+    // }
 
     //SHOW SELECTED POST IF THERE IS ONE OR SHOW ALL POSTS
     render () {
@@ -81,7 +78,7 @@ state = {
 
             return (
                 <div>
-                < NavBar /> 
+                < NavBar signOut = {this.props.signOut}/> 
                 <h1> Welcome to your journal {this.props.username} </h1>
                 <Link to='/' className="ui primary button" onClick={this.props.signOut} >Sign out </Link>
                     <Link to='/NewEntry' ><Icon link name="add" size='large'/></Link>

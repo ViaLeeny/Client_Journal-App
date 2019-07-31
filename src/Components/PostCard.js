@@ -2,6 +2,7 @@ import React from "react";
 import { Icon } from 'semantic-ui-react'
 import { deletePost } from "../Services/api"
 import { Card, Divider } from 'semantic-ui-react'
+import Tone from './Tone'
 
 class PostCard extends React.Component {
 
@@ -11,7 +12,7 @@ class PostCard extends React.Component {
   }
 
   handleEditClick = () => {
-    this.props.createPost()
+    this.props.editThisPost()
   }
 
   render() {
@@ -22,10 +23,11 @@ class PostCard extends React.Component {
         <div className="post-card" >
         <Divider section />
         <h1 onClick={() => this.props.showPost(this.props.post)} >{this.props.post.title}</h1> 
-          <Icon link name='edit outline' size='large' onClick={handleEditClick}/>  
-          <Icon link name='delete' size='large' onClick={handleDeleteClick}/>
         <p onClick={() => this.props.showPost(this.props.post)} >{this.props.post.content}</p> 
         
+        <Tone post ={this.props.post}/>
+        <Icon link name='edit outline' size='large' onClick={handleEditClick}/>  
+        <Icon link name='delete' size='large' onClick={handleDeleteClick}/>
     
         </div>
 

@@ -21,19 +21,18 @@ class JournalEntryCreator extends React.Component {
     mood_id: 1
   }
 
-  //CREATE POST
+  //CREATE POST AND ADD POST TO STATE IN APP
   handleSaveSubmit  =() => {
 
     const { title, content, location_name, longitude, latitude} = this.state
 
     createEntry( title, content, location_name, longitude, latitude)
     .then( data => {
-      console.log(data)
+     this.props.addPostAndLocationsToStateArrays(data)
     })
-      // .then(
-      //  set state in app
-      //     this.props.history.push('./home')
-      // )
+      .then(
+          this.props.history.push('./home')
+      )
   }
 
   componentDidMount() {

@@ -48,27 +48,6 @@ state = {
         this.props.editThisPost(thePost)
         this.props.history.push('./Entry')
     }
-
-    //CREATE AN ENTRY
-    // handleSubmit = () => {
-    //     const emptyString = ''
-    //     createEntry(emptyString, emptyString, this.state.user_id, this.state.location_id, this.state.mood_id)
-    //     .then( data => {
-    //                 this.setState({
-    //                     selectedPost: [data]
-    //                 })
-    //                 console.log(this.state.selectedPost)
-    //             } 
-    //         )
-    //     // .then(
-    //     //     this.props.history.push('./home')
-    //     // )
-    // }
-
-    // createPost = () => {
-    //     console.log('We are creating this.')
-    // }
-
     //SHOW SELECTED POST IF THERE IS ONE OR SHOW ALL POSTS
     render () {
       const { posts } = this.props

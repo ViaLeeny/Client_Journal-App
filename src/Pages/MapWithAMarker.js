@@ -11,13 +11,13 @@ const MapWithAMarker = withGoogleMap(props => (
     defaultCenter={{lat: 40.712776, lng: -73.005974}} 
     >
         {
-            props.locations.map((location) => (
+            props.locations.map(location => (
                 
                 <Marker 
-                    key={location.location.id} 
-                    position={{lat: location.location.latitude, lng: location.location.longitude} }
+                    key={location.id} 
+                    position={{lat: location.latitude, lng: location.longitude} }
                     
-                    name={location.location.name}
+                    name={location.name}
                     onClick= {() => props.showInfoBox(location.location)}
                 />
             ))

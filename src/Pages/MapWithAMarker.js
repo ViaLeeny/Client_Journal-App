@@ -14,11 +14,11 @@ const MapWithAMarker = withGoogleMap(props => (
             props.locations.map(location => (
                 
                 <Marker 
-                    key={location.id} 
-                    position={{lat: location.latitude, lng: location.longitude} }
+                    key={location.location.id} 
+                    position={{lat: location.location.latitude, lng: location.location.longitude} }
                     
-                    name={location.name}
-                    onClick= {() => props.showInfoBox(location.location)}
+                    name={location.location.name}
+                    onClick= {() => props.showInfoBox(location.location.location)}
                 />
             ))
         }

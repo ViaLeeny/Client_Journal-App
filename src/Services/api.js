@@ -1,4 +1,4 @@
-const API_BASE_URL = `https://daily-write-api.herokuapp.com/posts`;
+const API_BASE_URL = `https://daily-write-api.herokuapp.com`;
 
 
 //FETCH USER LOGIN INFORMATION FOR AUTHENTICATION

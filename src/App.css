@@ -1,3 +1,30 @@
+.about-page-all{
+  text-align: left;
+  width: 70%;
+  margin: auto;
+}
+
+.about-page-h{
+  font-size: 25px;
+}
+
+.about-page-t{
+  text-align: center;
+  font-size: 30px;
+}
+
+.about-page-c {
+  width: 240px;
+  height: 170px;
+  margin: auto;
+}
+
+/* resize images */
+.about-page-c img {
+  width: 100%;
+  height: auto;
+}
+
 .App {
   text-align: center;
 }
@@ -6,6 +33,14 @@
   /* animation: App-logo-spin infinite 20s linear; */
   height: 40vmin;
   pointer-events: none;
+}
+
+.post-content{
+  font-size: 15px;
+}
+
+.post-header{
+  font-size: 30px;
 }
 
 .App-header {
@@ -29,8 +64,60 @@
 }
 
 .post-card {
-padding: 10px
+padding: 10px;
+justify-content: center;
 }
+
+.grow:hover
+{
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.about{
+  width: 250px;
+  margin: auto;
+}
+
+/* .threed:hover
+{
+        box-shadow:
+                1px 1px #53a7ea,
+                2px 2px #53a7ea,
+                3px 3px #53a7ea;
+        -webkit-transform: translateX(-3px);
+        transform: translateX(-3px);
+} */
+
+.card-column-2{
+  position: absolute;
+  top: 100px;
+}
+
+.about-page-p{
+  font-size: 15px;
+}
+
+.div.ten.wide.column.card-column-1{
+
+  width: 80.5%!important;
+}
+
+.ui.card:first-child {
+  margin-left: 100px;
+}
+
+.ui.card:last-child {
+  margin-left: 100px;
+  margin-top: 100px;
+}
+
+.signout{
+  position: absolute;
+  right: 10px;
+}
+
 
 @keyframes App-logo-spin {
   from {

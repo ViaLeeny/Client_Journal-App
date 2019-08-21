@@ -3,15 +3,16 @@ import { google, GoogleMap, withGoogleMap,InfoWindow, Marker  } from 'react-goog
 
 
 const MapWithAMarker = withGoogleMap(props => (
-   <div> 
+    <div> 
 
     
     < GoogleMap 
+    debugger
     defaultZoom={2} 
     defaultCenter={{lat: 40.712776, lng: -73.005974}} 
     >
         {
-            props.locations.map((location) => (
+            props.locations.map(location => (
                 
                 <Marker 
                     key={location.location.id} 
@@ -28,7 +29,16 @@ const MapWithAMarker = withGoogleMap(props => (
                 position={{lat: props.selectedLocation.latitude, lng: props.selectedLocation.longitude  } }
                 onCloseClick= {() => props.hideInfoBox()}
             >
+                
                 <h4>You have journaled in {props.selectedLocation.name}!</h4>
+                {/* {
+                    props.selectedLocation.posts.map(location => (
+                        <div>
+                            <h1>{location.name}</h1>
+                        </div>
+                    ))
+                } */}
+                
             </InfoWindow>
         )}
     </ GoogleMap>

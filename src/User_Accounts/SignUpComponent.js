@@ -41,7 +41,7 @@ class SignUpComponent extends React.Component {
         <div class='signin-form'>
             <header className="App-header">
                 <img src='https://www.southernladymagazine.com/wp-content/uploads/2015/08/Journal-Illustration-Cutout_CROP1.jpg' className="App-logo" alt="logo" />
-                <h1>Journal App</h1>
+                <h1>DailyWrite</h1>
                 <Form>
                     <label>First Name</label>
                     <Form.Field>

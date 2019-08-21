@@ -41,13 +41,13 @@ class Tone extends React.Component {
             break;
         case "confident":
             this.setState({
-                borderColor: "#6600cc", //PURPLE
+                borderColor: "#339933", //GREEN 
                 tone: this.props.post.tone
             });
             break;
         case "tentative":
             this.setState({
-                borderColor: "#339933", //GREEN
+                borderColor: "#6600cc", //PURPLE
                 tone: this.props.post.tone
             });
             break;
@@ -85,6 +85,7 @@ class Tone extends React.Component {
                     style={{
                         width: "130px",
                         height: "50px",
+                        margin: "auto",
                         justifyContent: "center",
                         "border-color": this.state.borderColor, 
                         "font-weight": "bold", 

@@ -12,7 +12,7 @@ class PostCard extends React.Component {
   }
 
   handleEditClick = () => {
-    this.props.editThisPost()
+    this.props.editThisPost(this.props.post)
   }
 
   render() {
@@ -22,13 +22,14 @@ class PostCard extends React.Component {
         // <Card>
         <div className="post-card" >
         <Divider section />
-        <h1 onClick={() => this.props.showPost(this.props.post)} >{this.props.post.title}</h1> 
-        <p onClick={() => this.props.showPost(this.props.post)} >{this.props.post.content}</p> 
+        <h1 className='post-header' onClick={() => this.props.showPost(this.props.post)} >{this.props.post.title + '  '}</h1> 
+        <p onClick={() => this.props.showPost(this.props.post)} className='post-content' >{this.props.post.content}</p> 
         
         <Tone post ={this.props.post}/>
-        <Icon link name='edit outline' size='large' onClick={handleEditClick}/>  
-        <Icon link name='delete' size='large' onClick={handleDeleteClick}/>
-    
+        <br></br>
+        <br></br>
+        <Icon link name='edit outline' size='big' onClick={() => this.props.showPost(this.props.post)}/>  
+        <Icon link name='delete' size='big' onClick={handleDeleteClick}/>
         </div>
 
         // </Card>

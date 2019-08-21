@@ -8,6 +8,7 @@ import HomePage from './Pages/HomePage'
 import UserProfile from './User_Accounts/UserProfile';
 import JournalEntryEditor from './Components/JournalEntryEditor'
 import JournalEntryCreator from './Components/JournalEntryCreator'
+import AboutPage from './Pages/AboutPage'
 
 import Map from './Pages/Map'
 import { validate, getPosts } from './Services/api'
@@ -70,14 +71,14 @@ class App extends React.Component {
 
     //CHECKS TO SEE IF LOCATION ALREADY EXISTS
     const addNewLocationToLocationState = [...locations]
-    if (locations.includes(data.location)){
-      console.log('nothing to do here.')
-    } else {
-      addNewLocationToLocationState.pop(data.location)
+    // if (locations.includes(data)){
+    //   console.log('nothing to do here.')
+    // } else {
+      addNewLocationToLocationState.unshift(data)
       this.setState({
         locations: addNewLocationToLocationState
       })
-    }
+    // }
     console.log(locations)
   }
 
@@ -91,7 +92,7 @@ class App extends React.Component {
       })
   }
 
-  //USE THE GETLOCATIONS FUNCTION IN SERVICES/API TO SET STATE
+  //USE THE GETPOSTS FUNCTION IN SERVICES/API TO SET LOCATION STATE
   setLocations = () => {
     // const {locations} = this.state 
     // const getLocations = [...locations]
@@ -116,7 +117,8 @@ class App extends React.Component {
       const { posts } = this.state
       const removedThisPostFromPostsArray = [...posts].filter(post => post !== thisPost)
       this.setState({
-        posts: removedThisPostFromPostsArray
+        posts: removedThisPostFromPostsArray,
+        locations: removedThisPostFromPostsArray
       })
 
   }
@@ -149,6 +151,7 @@ class App extends React.Component {
          <Route path="/NewEntry" component={props => <JournalEntryCreator signOut={signOut} {...props} addPostAndLocationsToStateArrays = {addPostAndLocationsToStateArrays}/>}/>
          <Route path="/Entry" component={props => <JournalEntryEditor signOut={signOut} {...props} username = {username} selectedPost={selectedPost} />}/>
          <Route path="/map" component={props => <Map signOut={signOut}  {...props} locations={locations} />}/>
+         <Route path="/about" component={props => <AboutPage {...props} />}/>
 
 
          <Route path="/home" component={props => <HomePage 

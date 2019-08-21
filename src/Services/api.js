@@ -1,4 +1,4 @@
-const API_BASE_URL = `https://sheltered-badlands-75405.herokuapp.com`;
+const API_BASE_URL = `https://daily-write-api.herokuapp.com/posts`;
 
 
 //FETCH USER LOGIN INFORMATION FOR AUTHENTICATION

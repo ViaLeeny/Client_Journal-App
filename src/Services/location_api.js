@@ -1,4 +1,4 @@
-const API_BASE_URL = `http://localhost:3000`;
+const API_BASE_URL = `https://sheltered-badlands-75405.herokuapp.com`;
 
 
 //FETCH LOCATION FOR MAPS

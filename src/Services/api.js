@@ -1,4 +1,5 @@
-const API_BASE_URL = `http://localhost:3000`;
+const API_BASE_URL = `https://sheltered-badlands-75405.herokuapp.com`;
+
 
 //FETCH USER LOGIN INFORMATION FOR AUTHENTICATION
 export function login(username, password){

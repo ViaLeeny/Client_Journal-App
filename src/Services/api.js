@@ -1,4 +1,4 @@
-const API_BASE_URL = `https://daily-write-api.herokuapp.com`;
+const API_BASE_URL = `${process.env.REACT_APP_API_URL}`;
 
 
 //FETCH USER LOGIN INFORMATION FOR AUTHENTICATION

@@ -18,7 +18,8 @@ class LoginComponent extends React.Component {
             if (data.errors){
                 alert(data.errors)
             } else {
-                this.props.signIn(data)
+                console.log("hello, lets sign in")
+                // this.props.signIn(data)
             }
         })
     }

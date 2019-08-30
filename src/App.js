@@ -126,6 +126,7 @@ class App extends React.Component {
   //INITIATE APP BY SETTING LOCAL STORAGE TOKEN
   componentDidMount() {
     if (localStorage.token){
+      // console.log("this is why we validated.")
       validate().then(data => {
         if (data.error){
           alert(data.error)
@@ -158,6 +159,7 @@ class App extends React.Component {
             username = {username} 
             signOut={signOut} 
             posts = {posts} 
+            signIn={signIn}
             editThisPost ={editThisPost}
             deleteThisPost = {deleteThisPost} {...props} />}
             />

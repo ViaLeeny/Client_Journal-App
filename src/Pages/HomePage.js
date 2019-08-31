@@ -53,8 +53,6 @@ state = {
       const { posts } = this.props
       const { showPost, createPost } = this
        
-      if (this.props.username){
-
             return (
                 <div>
 
@@ -114,22 +112,8 @@ state = {
 
 </Grid>
                 </div>
-                )
-            } else {
-              return (
-                <div> 
-                  <h1> Invalid Username / Password combination </h1>
-                 <LoginComponent /> 
-                </div>
-              
-              )
-            }
-          
-          
+                )  
           }
-    // }
 }
-
-
 
 export default HomePage 

@@ -35,11 +35,10 @@ class App extends React.Component {
 
   //SIGN USER IN
   signIn = user => {
-    this.setState({
-      username: user.username, 
-
-    })
     localStorage.setItem('token', user.token)
+    this.setState({
+      username: user.username
+    }, () => this.props.history.push('/home'))
   }
 
   //SIGN USER OUT

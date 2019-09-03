@@ -38,8 +38,12 @@ class App extends React.Component {
     localStorage.setItem('token', user.token)
     this.setState({
       username: user.username
-    }, () => this.props.history.push('/home'))
+    }, 
+      () => this.props.history.push('/home')
+    )
   }
+
+
 
   //SIGN USER OUT
   signOut = () => {

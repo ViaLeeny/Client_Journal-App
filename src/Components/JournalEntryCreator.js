@@ -17,8 +17,7 @@ class JournalEntryCreator extends React.Component {
     latitude: 0,
     post_id: '', 
     user_id: 1, 
-    location_id: 1, 
-    mood_id: 1
+    location_id: 1
   }
 
   //CREATE POST AND ADD POST TO STATE IN APP

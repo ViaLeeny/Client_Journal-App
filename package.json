@@ -5,7 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.2.0",
     "google-maps-react": "^2.0.2",
-    "grommet": "^2.7.4",
+    "grommet": "^2.7.7",
     "polished": "^3.4.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -40,5 +40,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "dotenv": "^8.1.0"
   }
 }

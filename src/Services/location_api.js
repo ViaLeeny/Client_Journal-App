@@ -1,4 +1,4 @@
-const API_BASE_URL = `https://daily-write-api.herokuapp.com`;
+const API_BASE_URL = `https://dailywrite-api.herokuapp.com`;
 
 
 //FETCH LOCATION FOR MAPS

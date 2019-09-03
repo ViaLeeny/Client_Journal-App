@@ -22,8 +22,8 @@ class JournalEntryEditor extends React.Component {
 
   //EDIT THE NEWLY CREATED POST
   handleSaveSubmit  =() => {
-    const { title, content, user_id, post_id, mood_id, location_name, longitude, latitude} = this.state
-    editPost( post_id, title, content, user_id, location_name, mood_id, longitude, latitude)
+    const { title, content, user_id, post_id, location_name, longitude, latitude} = this.state
+    editPost( post_id, title, content, user_id, location_name, longitude, latitude)
        .then(
            this.props.history.push('./home')
        )

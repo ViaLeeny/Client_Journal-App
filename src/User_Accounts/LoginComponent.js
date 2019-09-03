@@ -12,14 +12,14 @@ class LoginComponent extends React.Component {
     }
 
     //CHANGE STATE OF USERNAME INPUT WHILE USER TYPES
-    handleSubmit = () => {
+    handleSubmit = (e) => {
+        e.preventDefault()
         login(this.state.username, this.state.password)
         .then(data => {
             if (data.errors){
                 alert(data.errors)
             } else {
-                console.log("hello, lets sign in")
-                // this.props.signIn(data)
+                this.props.signIn(data)
             }
         })
     }
@@ -39,7 +39,7 @@ class LoginComponent extends React.Component {
             <header className="App-header">
                 <img src='https://www.southernladymagazine.com/wp-content/uploads/2015/08/Journal-Illustration-Cutout_CROP1.jpg' className="App-logo" alt="logo" />
                 <h1>DailyWrite</h1>
-                <Form>
+                <Form onSubmit= {handleSubmit}>
                     <label>Username</label>
                     <Form.Field>
                     <input name="username" placeholder='Username' onChange={handleChange} />
@@ -49,7 +49,8 @@ class LoginComponent extends React.Component {
                     <input type="password" name="password"  placeholder='Password' onChange={handleChange} />
                     </Form.Field>
                     <br />
-                    <Link to='/home' className="ui primary button" onClick= {handleSubmit} >Submit</Link>
+                    <button class="ui primary button" >Submit</button>
+                    {/* <Link to='/home' className="ui primary button" onClick= {handleSubmit} >Submit</Link> */}
                     <br/>
                     <Link to='/signup' >Or, sign up!</Link>
                 </Form>

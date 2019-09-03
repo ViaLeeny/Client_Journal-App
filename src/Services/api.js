@@ -1,4 +1,4 @@
-const API_BASE_URL = `${process.env.REACT_APP_API_URL}`;
+const API_BASE_URL = `https://dailywrite-api.herokuapp.com`;
 
 
 //FETCH USER LOGIN INFORMATION FOR AUTHENTICATION
@@ -8,7 +8,7 @@ export function login(username, password){
     headers: {
       "Content-Type": "application/json",
       Accepts: "application/json", 
-      'Authorization': localStorage.getItem("token")
+      // 'Authorization': localStorage.getItem("token")
     },
     body: JSON.stringify({ username, password })
   }).then(resp => resp.json());

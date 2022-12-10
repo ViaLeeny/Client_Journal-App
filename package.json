@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.2.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "google-maps-react": "^2.0.2",
     "grommet": "^2.7.7",
     "polished": "^3.4.1",
